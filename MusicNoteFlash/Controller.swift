@@ -12,9 +12,27 @@ import UIKit
 class Controller: NSObject {
     static let instance = Controller()
     
-    var frequency = 10.0
-    var tempo = 120
+    var tempo: Double = 120.0
     var timeSignature = TimeSignature.fourfour
+    var muted = false
+    
+    func configureDefaults(){
+        let tem = UserDefaults.standard.double(forKey: Constants.Defaults.tempo)
+        if tem != 0{
+            tempo = tem
+        }
+        
+        muted = UserDefaults.standard.bool(forKey: Constants.Defaults.muted)
+        
+        if let ts = UserDefaults.standard.object(forKey: Constants.Defaults.timeSig) as? String,
+            let enumTs = TimeSignature(rawValue: ts){
+            timeSignature = enumTs
+        }
+    }
+    
+    func getFrequency() -> TimeInterval{
+        return 60 / tempo
+    }
 }
 
 extension MutableCollection where Indices.Iterator.Element == Index {

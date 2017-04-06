@@ -15,28 +15,33 @@ class ViewController: UIViewController {
     @IBOutlet weak var lblKey: UILabel!
     @IBOutlet weak var lblNextKey: UILabel!
     
-    var timeLimit = 10.0
-    var timeStarted: Date!
     var timer: Timer!
     var keyController = KeyController()
     var activeKey: Key!
     var keyIndex = 0
+    var timeCounter = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        Controller.instance.configureDefaults()
        activeKey = keyController.getKey(for: "A")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         restart(with: activeKey.key)
+        updateTimeSignature()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if timer != nil { timer.invalidate() }
     }
     
     func restart(with key: String){
         guard let key = keyController.getKey(for: key) else {return}
-        let c = Controller.instance
-        timeLimit = c.frequency
+        timeCounter = 0
         key.shuffleKeys()
         updateKey(key: key.key)
         startNoteCycle(notes: key)
@@ -44,34 +49,51 @@ class ViewController: UIViewController {
     
     func startNoteCycle(notes: Key){
         if timer != nil { timer.invalidate() }
-        timer = Timer.scheduledTimer(withTimeInterval: timeLimit, repeats: true) { _ in
-            let count = notes.keySet.count
-            self.timeStarted = Date()
-
-            if self.keyIndex >= count {
-                self.keyIndex = 0
+        let c = Controller.instance
+        timer = Timer.scheduledTimer(withTimeInterval: c.getFrequency(), repeats: true) { _ in
+            var nextNoteCount = 0
+            switch c.timeSignature{
+            case .fourfour:
+                nextNoteCount = 4
+            case .threefour:
+                nextNoteCount = 3
             }
-            let note = notes.keySet[self.keyIndex]
-            self.displayNote(note: note)
-
-            if self.keyIndex + 1 >= count {
-                notes.shuffleKeys()
+            
+            if self.timeCounter >= nextNoteCount{
+                Sounds.instance.playLeadTick()
+                self.nextNote(notes: notes)
+                self.timeCounter = 0
+            }else{
+                Sounds.instance.playInnerTick()
             }
-            let nextNoteIndex = self.keyIndex + 1 >= count ? 0 : self.keyIndex + 1
-            self.displayNextNote(note: notes.keySet[nextNoteIndex])
-
-            self.keyIndex += 1
+            
+            self.timeCounter += 1
         }
         timer.fire()
-        
-        let timeKeeper = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true){ _ in
-            self.updateTimeLeft(time: self.timeLimit + self.timeStarted.timeIntervalSinceNow)
-        }
-        timeKeeper.fire()
     }
     
-    func updateTimeLeft(time: TimeInterval) {
-        self.lblTime.text = "Time: \(Int(time))"
+    func nextNote(notes: Key){
+        let count = notes.keySet.count
+        
+        if self.keyIndex >= count {
+            self.keyIndex = 0
+        }
+        let note = notes.keySet[self.keyIndex]
+        self.displayNote(note: note)
+        
+        if self.keyIndex + 1 >= count {
+            notes.shuffleKeys()
+        }
+        let nextNoteIndex = self.keyIndex + 1 >= count ? 0 : self.keyIndex + 1
+        self.displayNextNote(note: notes.keySet[nextNoteIndex])
+        
+        self.keyIndex += 1
+    }
+    
+    func updateTimeSignature() {
+        let tempo = Controller.instance.tempo
+        let timeSig = Controller.instance.timeSignature
+        self.lblTime.text = "♩: \(Int(tempo))\n\(timeSig.rawValue)"
     }
     
     func displayNote(note: String){

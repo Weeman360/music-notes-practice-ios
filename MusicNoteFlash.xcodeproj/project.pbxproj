@@ -14,6 +14,10 @@
 		080AF6991E8D6C52000C81F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 080AF6971E8D6C52000C81F8 /* LaunchScreen.storyboard */; };
 		080AF6A11E8D7799000C81F8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080AF6A01E8D7799000C81F8 /* SettingsViewController.swift */; };
 		080AF6A31E8D79BC000C81F8 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080AF6A21E8D79BC000C81F8 /* Controller.swift */; };
+		081927D61E96B8A70018614D /* inner-tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 081927D41E96B8A70018614D /* inner-tick.wav */; };
+		081927D71E96B8A70018614D /* lead-tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 081927D51E96B8A70018614D /* lead-tick.wav */; };
+		081927DD1E96C1380018614D /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081927DC1E96C1380018614D /* Sounds.swift */; };
+		081927E01E96C6F80018614D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081927DF1E96C6F80018614D /* Constants.swift */; };
 		B58876854EDA6E65D9F21C25 /* KeyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5887695B014E0A0C491134A /* KeyController.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +31,10 @@
 		080AF69A1E8D6C52000C81F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		080AF6A01E8D7799000C81F8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		080AF6A21E8D79BC000C81F8 /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		081927D41E96B8A70018614D /* inner-tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "inner-tick.wav"; sourceTree = "<group>"; };
+		081927D51E96B8A70018614D /* lead-tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "lead-tick.wav"; sourceTree = "<group>"; };
+		081927DC1E96C1380018614D /* Sounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
+		081927DF1E96C6F80018614D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B5887695B014E0A0C491134A /* KeyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,17 +68,61 @@
 		080AF68D1E8D6C52000C81F8 /* MusicNoteFlash */ = {
 			isa = PBXGroup;
 			children = (
-				080AF68E1E8D6C52000C81F8 /* AppDelegate.swift */,
+				080AF6951E8D6C52000C81F8 /* Assets.xcassets */,
+				081927DB1E96B8DE0018614D /* Stroyboards */,
+				081927DA1E96B8D30018614D /* Controllers */,
+				081927D91E96B8BC0018614D /* App stuff */,
+				081927D81E96B8B20018614D /* ViewControllers */,
+				081927D31E96B89D0018614D /* Audio */,
+			);
+			path = MusicNoteFlash;
+			sourceTree = "<group>";
+		};
+		081927D31E96B89D0018614D /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				081927D41E96B8A70018614D /* inner-tick.wav */,
+				081927D51E96B8A70018614D /* lead-tick.wav */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
+		081927D81E96B8B20018614D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
 				080AF6901E8D6C52000C81F8 /* ViewController.swift */,
 				080AF6A01E8D7799000C81F8 /* SettingsViewController.swift */,
-				080AF6921E8D6C52000C81F8 /* Main.storyboard */,
-				080AF6951E8D6C52000C81F8 /* Assets.xcassets */,
-				080AF6971E8D6C52000C81F8 /* LaunchScreen.storyboard */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		081927D91E96B8BC0018614D /* App stuff */ = {
+			isa = PBXGroup;
+			children = (
+				080AF68E1E8D6C52000C81F8 /* AppDelegate.swift */,
 				080AF69A1E8D6C52000C81F8 /* Info.plist */,
+				081927DF1E96C6F80018614D /* Constants.swift */,
+			);
+			name = "App stuff";
+			sourceTree = "<group>";
+		};
+		081927DA1E96B8D30018614D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				081927DC1E96C1380018614D /* Sounds.swift */,
 				080AF6A21E8D79BC000C81F8 /* Controller.swift */,
 				B5887695B014E0A0C491134A /* KeyController.swift */,
 			);
-			path = MusicNoteFlash;
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		081927DB1E96B8DE0018614D /* Stroyboards */ = {
+			isa = PBXGroup;
+			children = (
+				080AF6921E8D6C52000C81F8 /* Main.storyboard */,
+				080AF6971E8D6C52000C81F8 /* LaunchScreen.storyboard */,
+			);
+			name = Stroyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,6 +187,8 @@
 			files = (
 				080AF6991E8D6C52000C81F8 /* LaunchScreen.storyboard in Resources */,
 				080AF6961E8D6C52000C81F8 /* Assets.xcassets in Resources */,
+				081927D61E96B8A70018614D /* inner-tick.wav in Resources */,
+				081927D71E96B8A70018614D /* lead-tick.wav in Resources */,
 				080AF6941E8D6C52000C81F8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,6 +203,8 @@
 				080AF6911E8D6C52000C81F8 /* ViewController.swift in Sources */,
 				080AF68F1E8D6C52000C81F8 /* AppDelegate.swift in Sources */,
 				080AF6A11E8D7799000C81F8 /* SettingsViewController.swift in Sources */,
+				081927E01E96C6F80018614D /* Constants.swift in Sources */,
+				081927DD1E96C1380018614D /* Sounds.swift in Sources */,
 				080AF6A31E8D79BC000C81F8 /* Controller.swift in Sources */,
 				B58876854EDA6E65D9F21C25 /* KeyController.swift in Sources */,
 			);
@@ -312,6 +368,7 @@
 				080AF69F1E8D6C52000C81F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
