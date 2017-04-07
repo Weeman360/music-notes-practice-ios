@@ -113,8 +113,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func ChangedKey(_ sender: UIStepper) {
-        let majorKeys = keyController.getMajorKeys()
-        activeKey = majorKeys[Int(sender.value)]
+        let allKeys = keyController.getAllKeys()
+        activeKey = allKeys[Int(sender.value)]
         restart(with: activeKey.key)
     }
 }

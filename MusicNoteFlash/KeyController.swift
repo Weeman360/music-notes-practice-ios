@@ -82,7 +82,7 @@ class KeyController {
     static let keyGshm = ["G#","A#","B","C#","D#","E","F#"]
 
     func getKey(for keyString: String) -> Key?{
-        let key = majorKeys.filter({$0.key == keyString});
+        let key = getAllKeys().filter({$0.key == keyString});
         return key.first
     }
 
