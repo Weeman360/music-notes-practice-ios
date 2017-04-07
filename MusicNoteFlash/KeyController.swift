@@ -37,7 +37,23 @@ class KeyController {
             Key(key: "G", keySet: keyG),
             Key(key: "G#", keySet: keyGsh)
     ]
+    
+    private let minorKeys = [
+        Key(key: "Am", keySet: keyAm),
+        Key(key: "B♭m", keySet: keyBbm),
+        Key(key: "Bm", keySet: keyBm),
+        Key(key: "Cm", keySet: keyCm),
+        Key(key: "C#m", keySet: keyCshm),
+        Key(key: "Dm", keySet: keyDm),
+        Key(key: "D#m", keySet: keyDshm),
+        Key(key: "Em", keySet: keyEm),
+        Key(key: "Fm", keySet: keyFm),
+        Key(key: "F#m", keySet: keyFshm),
+        Key(key: "Gm", keySet: keyGm),
+        Key(key: "G#m", keySet: keyGshm)
+    ]
 
+    // Major keys
     static let keyA = ["A","Bm","C#m","D","E","F#m","G#dim"]
     static let keyBb = ["B♭","Cm","Dm","E♭","F","Gm","Adim"]
     static let keyB = ["B","C#m","D#m","E","F#","G#m","A#dim"]
@@ -46,10 +62,24 @@ class KeyController {
     static let keyD = ["D","Em","F#m","G","A","Em","C#dim"]
     static let keyDsh = ["D#","Fm","Gm","A♭","B♭","Cm","Ddim"]
     static let keyE = ["E","F#m","G#m","A","B","C#m","D#dim"]
-    static let keyF = ["F","Gm","Am","b♭","C","Dm","Edim"]
+    static let keyF = ["F","Gm","Am","B♭","C","Dm","Edim"]
     static let keyFsh = ["F#","G#m","A#m","B","Db","E♭m","Fdim"]
     static let keyG = ["G","Am","Bm","C","D","Em","F#dim"]
     static let keyGsh = ["G#","B♭m","Cm","D♭","E♭","Fm","G#dim"]
+    
+    // Natural Minor keys
+    static let keyAm = ["A","B","C","D","E","F","G"]
+    static let keyBm = ["B","D♭","D","E","G♭","G","A"]
+    static let keyBbm = ["B♭","C","D♭","E♭","F","G♭","A♭"]
+    static let keyCm = ["C","D","E♭","F","G","A♭","B♭"]
+    static let keyCshm = ["C#","D#","E","F#","G#","A","B"]
+    static let keyDm = ["D","E","F","G","A","B♭","C"]
+    static let keyDshm = ["D#","F","G♭","A♭","B♭","B","C#"]
+    static let keyEm = ["E","F#","G","A","B","C","D"]
+    static let keyFm = ["F","G","A♭","B♭","C","D♭","E♭"]
+    static let keyFshm = ["F#","G#","A","B","C#","D","E"]
+    static let keyGm = ["G","A","B♭","C","D","E♭","F"]
+    static let keyGshm = ["G#","A#","B","C#","D#","E","F#"]
 
     func getKey(for keyString: String) -> Key?{
         let key = majorKeys.filter({$0.key == keyString});
@@ -58,5 +88,15 @@ class KeyController {
 
     func getMajorKeys() -> [Key] {
         return majorKeys
+    }
+    
+    func getMinorKeys() -> [Key]{
+        return minorKeys
+    }
+    
+    func getAllKeys() -> [Key]{
+        var all = getMajorKeys()
+        all.append(contentsOf: getMinorKeys())
+        return all
     }
 }
